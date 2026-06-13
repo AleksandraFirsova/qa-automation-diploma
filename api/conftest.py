@@ -6,17 +6,17 @@ from api.client.booking_client import BookingClient
 from api.models.booking import BookingCreateRequest
 from api.steps.auth_steps import AuthSteps
 from api.steps.booking_steps import BookingSteps
-from config.config_api import Config
+from config.api_config import ApiConfig
 
 
 @pytest.fixture
 def auth_client():
-    return AuthClient(Config.BASE_URL)
+    return AuthClient(ApiConfig.BASE_URL)
 
 
 @pytest.fixture
 def booking_client():
-    return BookingClient(Config.BASE_URL)
+    return BookingClient(ApiConfig.BASE_URL)
 
 
 @pytest.fixture
@@ -32,8 +32,8 @@ def booking_steps(booking_client):
 @pytest.fixture
 def token(auth_steps):
     response = auth_steps.create_token(
-        username=Config.USERNAME,
-        password=Config.PASSWORD
+        username=ApiConfig.USERNAME,
+        password=ApiConfig.PASSWORD
     )
 
     return response.json()["token"]

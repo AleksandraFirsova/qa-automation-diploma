@@ -9,7 +9,7 @@ from api.schemas.auth_schema import (
     auth_success_schema,
     auth_error_schema,
 )
-from config.config_api import Config
+from config.api_config import ApiConfig
 
 
 @allure.feature("Authentication")
@@ -18,8 +18,8 @@ from config.config_api import Config
 @allure.severity(allure.severity_level.CRITICAL)
 def test_create_token_success(auth_steps):
     response = auth_steps.create_token(
-        username=Config.USERNAME,
-        password=Config.PASSWORD
+        username=ApiConfig.USERNAME,
+        password=ApiConfig.PASSWORD
     )
 
     assert response.status_code == 200
@@ -67,7 +67,7 @@ def test_create_token_invalid_credentials(auth_steps):
 def test_create_token_empty_username(auth_steps):
     response = auth_steps.create_token(
         username="",
-        password=Config.PASSWORD
+        password=ApiConfig.PASSWORD
     )
 
     assert response.status_code == 200
@@ -90,7 +90,7 @@ def test_create_token_empty_username(auth_steps):
 @allure.severity(allure.severity_level.NORMAL)
 def test_create_token_empty_password(auth_steps):
     response = auth_steps.create_token(
-        username=Config.USERNAME,
+        username=ApiConfig.USERNAME,
         password=""
     )
 
