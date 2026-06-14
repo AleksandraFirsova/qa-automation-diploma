@@ -1,4 +1,5 @@
 import pytest
+from allure_commons._allure import attach
 
 from selene import browser
 from selenium import webdriver
@@ -34,5 +35,11 @@ def setup_browser():
     browser.config.window_maximized = True
 
     yield
+    session_id = driver.session_id
+
+    attach.add_screenshot(driver)
+    attach.add_page_source(driver)
+    attach.add_console_logs(driver)
+    attach.add_video(session_id)
 
     driver.quit()
