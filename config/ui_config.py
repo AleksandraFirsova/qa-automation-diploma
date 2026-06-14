@@ -4,7 +4,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 load_dotenv(BASE_DIR / ".env.ui", override=True)
 
 
@@ -12,7 +11,8 @@ class UIConfig:
     BASE_URL = os.getenv("BASE_URL")
 
     BROWSER = os.getenv("BROWSER", "chrome")
-    BROWSER_VERSION = os.getenv("BROWSER_VERSION", "latest")
+
+    BROWSER_VERSION = os.getenv("BROWSER_VERSION", "127.0")
 
     SELENOID_URL = os.getenv("SELENOID_URL")
 

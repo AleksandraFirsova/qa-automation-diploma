@@ -5,6 +5,7 @@ from ui.pages.base_page import BasePage
 
 
 class CartPage(BasePage):
+    url = "/personal/cart"
 
     @property
     def items(self):
@@ -20,4 +21,4 @@ class CartPage(BasePage):
 
     def open(self):
         with allure.step("Открытие страницы корзины"):
-            browser.open("https://www.bookvoed.ru/personal/cart")
+            super().open()

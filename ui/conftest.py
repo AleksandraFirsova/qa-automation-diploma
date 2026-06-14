@@ -1,34 +1,35 @@
 import pytest
-from allure_commons._allure import attach
-
 from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+
+from config.ui_config import UIConfig
+from utils import attach
 
 
 @pytest.fixture(scope='function', autouse=True)
 def setup_browser():
     options = Options()
 
-    options.set_capability("browserName", "chrome")
-    options.set_capability("browserVersion", "127.0")
+    options.set_capability("browserName", UIConfig.BROWSER)
+    options.set_capability("browserVersion", UIConfig.BROWSER_VERSION)
 
     options.set_capability(
         "selenoid:options",
         {
             "enableVNC": True,
             "enableVideo": True,
-            "screenResolution": "1920x1080x24",
+            "screenResolution": f"{UIConfig.SCREEN_WIDTH}x{UIConfig.SCREEN_HEIGHT}x24",
             "name": "Bookvoed UI Tests",
         },
     )
 
     driver = webdriver.Remote(
-        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        command_executor=UIConfig.SELENOID_URL,
         options=options,
     )
 
-    driver.set_window_size(1920, 1080)
+    driver.set_window_size(UIConfig.SCREEN_WIDTH, UIConfig.SCREEN_HEIGHT)
 
     browser.config.driver = driver
     browser.config.timeout = 10

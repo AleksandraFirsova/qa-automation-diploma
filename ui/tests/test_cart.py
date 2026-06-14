@@ -12,7 +12,7 @@ def test_add_book_to_cart():
     cart_page = CartPage()
     product_page = ProductPage()
 
-    main_page.open("https://www.bookvoed.ru")
+    main_page.open()
     main_page.location_popup.accept_city()
 
     main_page.header.search_book("Мастер и Маргарита")
@@ -31,7 +31,7 @@ def test_add_book_to_cart():
 def test_open_cart_when_empty():
     main_page = MainPage()
 
-    main_page.open("https://www.bookvoed.ru")
+    main_page.open()
     main_page.location_popup.accept_city()
 
     main_page.header.cart.should(
@@ -45,7 +45,7 @@ def test_open_cart_when_has_items():
     cart_page = CartPage()
     product_page = ProductPage()
 
-    main_page.open("https://www.bookvoed.ru")
+    main_page.open()
     main_page.location_popup.accept_city()
 
     main_page.header.search_book("Мастер и Маргарита")
@@ -69,7 +69,7 @@ def test_cart_counter_updated_after_adding_book():
     results_page = SearchResultsPage()
     product_page = ProductPage()
 
-    main_page.open("https://www.bookvoed.ru")
+    main_page.open()
     main_page.location_popup.accept_city()
 
     main_page.header.search_book("Мастер и Маргарита")

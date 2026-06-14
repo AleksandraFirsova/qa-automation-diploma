@@ -21,3 +21,17 @@ class Header:
 
             with allure.step("Нажатие кнопки поиска"):
                 self.search_button.click()
+
+            with allure.step("Ожидание готовности результатов поиска"):
+                browser.element('[data-product-name]').should(be.visible)
+
+    def search_book_expect_no_results(self, book_name: str):
+        with allure.step(f"Поиск книги (ожидаем отсутствие результата): {book_name}"):
+            with allure.step("Ожидание видимости поля поиска и ввод текста"):
+                self.search_input.should(be.visible).type(book_name)
+
+            with allure.step("Нажатие кнопки поиска"):
+                self.search_button.click()
+
+            with allure.step("Проверка отсутствия результатов"):
+                browser.element('[data-product-name]').should(be.not_.visible)

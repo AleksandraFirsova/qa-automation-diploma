@@ -10,7 +10,7 @@ def test_product_page_content():
     results_page = SearchResultsPage()
     product_page = ProductPage()
 
-    main_page.open("https://www.bookvoed.ru")
+    main_page.open()
     main_page.location_popup.accept_city()
 
     main_page.header.search_book("Мастер и Маргарита")
